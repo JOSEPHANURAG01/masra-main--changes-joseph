@@ -3,47 +3,60 @@
 
 <head>
     <meta charset="utf-8">
-	<title>Peoria M.A.S.R.A</title>
+    <title>Peoria M.A.S.R.A</title>
     <meta content="" name="keywords">
     <meta content="" name="description">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    <!-- Favicon -->
-	<link rel="icon" href="assets/img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="assets/img/favicon.ico">
 
-    <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- Custom CSS for Orange Tabs -->
+    <style>
+        /* Style for the active tab */
+        .nav-pills .nav-link.active,
+        .nav-pills .show > .nav-link {
+            background-color: #DAA520; /* Your desired orange/gold color */
+            color: #fff !important; /* White text for the active tab, !important to override hover */
+        }
+
+        /* Style for non-active tabs */
+        .nav-pills .nav-link {
+            color: #0F172B; /* Darker text for non-active tabs for readability */
+        }
+        
+        /* Style for hovering over a NON-ACTIVE tab */
+        .nav-pills .nav-link:not(.active):hover,
+        .nav-pills .nav-link:not(.active):focus {
+            color: #DAA520; /* Orange text on hover for non-active tabs */
+        }
+    </style>
 </head>
 
 <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner" class="bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
         </div>
     </div>
     <!-- Spinner End -->
-
-
-    <!-- Navbar Start -->
+    
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="assets/img/logo3.png" alt="NAACP Peoria Branch" style="width: 60%; height: auto;">
-    
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -51,235 +64,687 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <div class="nav-item dropdown">
-    
-                <a href="index.html" class="nav-item nav-link  nav-link dropdown-toggle" data-bs-toggle="dropdown">Home</a>
-                <div class="dropdown-menu fade-down m-0">
-                    <a href="index.html" class="dropdown-item"  >Home</a>
-    
-                    <a href="welcome_new.html" class="dropdown-item">Welcome</a>
-                    <a href="outstorynew.html" class="dropdown-item">Our Story</a>
+                    <a href="index.html" class="nav-item nav-link  nav-link dropdown-toggle" data-bs-toggle="dropdown">Home</a>
+                    <div class="dropdown-menu fade-down m-0">
+                        <a href="index.html" class="dropdown-item">Home</a>
+                        <a href="welcome_new.html" class="dropdown-item">Welcome</a>
+                        <a href="outstorynew.html" class="dropdown-item">Our Story</a>
+                    </div>
                 </div>
-                </div>
-    
                 <a href="mhs.html" class="nav-item nav-link">MASRA BOARD MEMBERS</a>
-				 <a href="photo_gallery.html" class="nav-item nav-link">Photo Gallary</a>
-
-                <a href="programs.html" class="nav-item nav-link" >Programs</a>
-                <a href="eventtickets.html" class="nav-item nav-link"  style="color: orange;">Hall of Fame</a>
+                <a href="photo_gallery.html" class="nav-item nav-link">Photo Gallary</a>
+                <a href="programs.html" class="nav-item nav-link">Programs</a>
+                <a href="eventtickets.html" class="nav-item nav-link" style="color: orange;">Hall of Fame</a>
                 <a href="donations.html" class="nav-item nav-link">Donate</a>
-    
             </div>
         </div>
     </nav>
-    <!-- Navbar End -->
+    
+    <div class="container my-5">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+             <h1 class="mb-5" style="font-family: 'Heebo', sans-serif; color: #DAA520;">HALL OF FAME INDUCTEES</h1>
+        </div>
 
-    <!-- Navbar End -->
+        <!-- Tab Navigation -->
+        <ul class="nav nav-pills nav-fill flex-wrap mb-4 wow fadeInUp" data-wow-delay="0.2s" id="hofTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="alumni-tab" data-bs-toggle="pill" data-bs-target="#alumni-pane" type="button" role="tab" aria-controls="alumni-pane" aria-selected="true">Distinguished Alumni</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="bball-coach-tab" data-bs-toggle="pill" data-bs-target="#bball-coach-pane" type="button" role="tab" aria-controls="bball-coach-pane" aria-selected="false">Basketball Coaches</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="bball-players-tab" data-bs-toggle="pill" data-bs-target="#bball-players-pane" type="button" role="tab" aria-controls="bball-players-pane" aria-selected="false">Boys Basketball</button>
+            </li>
+             <li class="nav-item" role="presentation">
+                <button class="nav-link" id="track-coach-tab" data-bs-toggle="pill" data-bs-target="#track-coach-pane" type="button" role="tab" aria-controls="track-coach-pane" aria-selected="false">Track Coaches</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="boys-track-tab" data-bs-toggle="pill" data-bs-target="#boys-track-pane" type="button" role="tab" aria-controls="boys-track-pane" aria-selected="false">Boys Track</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="girls-track-tab" data-bs-toggle="pill" data-bs-target="#girls-track-pane" type="button" role="tab" aria-controls="girls-track-pane" aria-selected="false">Girls Track</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="football-tab" data-bs-toggle="pill" data-bs-target="#football-pane" type="button" role="tab" aria-controls="football-pane" aria-selected="false">Football</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="all-around-tab" data-bs-toggle="pill" data-bs-target="#all-around-pane" type="button" role="tab" aria-controls="all-around-pane" aria-selected="false">All-Around</button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content wow fadeInUp" data-wow-delay="0.3s" id="hofTabsContent">
+            
+            <!-- Alumni Tab Pane -->
+            <div class="tab-pane fade show active" id="alumni-pane" role="tabpanel" aria-labelledby="alumni-tab">
+                <!-- Inductee Card: Ken Hinton -->
+                <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Ken Hinton Picture.jpg" class="img-fluid rounded-circle mb-2" alt="Ken Hinton">
+                                <small class="text-muted fst-italic">Chris Duncan accepting plaque on behalf of Honoree Superintendent Ken Hinton &amp; MASRA Chairperson Hosea Washington</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Ken Hinton (Class of 1964)</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Alumnus Inductee &amp; Former Peoria Public Schools District 150 Superintendent</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+                                        For over four decades, Ken Hinton dedicated his life to education, impacting thousands of students, educators, and families. A proud Manual High School graduate (Class of 1964), Ken began teaching at Irving School in 1969, where early classroom challenges shaped his lifelong mission to uplift others through education.
+
+He went on to serve in several leadership roles across Peoria Public Schools: Assistant Principal at Harrison and Trewyn, Principal at Harrison Primary, and Director/Principal of the innovative Valeska Hinton Early Childhood Education Center. In 1998, he became Assistant Superintendent, and later, Superintendent of Peoria Public Schools from 2004 to 2009.
+
+Ken also held a national role as Regional Vice President for Edison Schools, supporting districts in cities across the U.S. Even in retirement, he returned to serve as Director of the George Washington Carver Center.
+
+Ken’s efforts introduced school-based medical clinics and breakfast programs, expanded early childhood education, and inspired a book, How Do They Know You Care?
+
+Honored with numerous awards—including the Administrator of the Year and the Martin Luther King Jr. Award—Ken remains most proud of the lives he touched. Married to his wife Rita for 58 years, with five successful children, Ken’s legacy is one of service, compassion, and transformational leadership.
+
+                                    </p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Inductee Card: Attorney Don Jackson -->
+                <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Attorney Don Jackson.jpeg" class="img-fluid rounded-circle mb-2" alt="Attorney Don Jackson">
+                                <small class="text-muted fst-italic">Attorney Don Jackson (Class of 1956)</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Attorney Don Jackson (Class of 1956)</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Alumnus Inductee</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+                                        Attorney Don Jackson has spent a lifetime fighting for justice and opportunity. A proud graduate of Manual High School, Jackson’s roots in Peoria stretch back to the late 1800s, when his great-great-grandfather Henry C. Gibson became the city’s first Black constable and won a landmark civil rights lawsuit in 1904.
+Jackson began his career at the Peoria Urban League, helping create apprenticeship pathways in the skilled trades for minorities. That early work inspired him to pursue a law degree at the University of Illinois, graduating in 1971. He later established a downtown practice focused on civil rights and employment discrimination.
+From 1996 to 2016, Jackson served as president of the Peoria NAACP and as Illinois State NAACP president from 2004 to 2011. He advanced the organization’s reach to include healthcare, environmental justice, education reform, and voting rights. Under his leadership, the Peoria NAACP was instrumental in exposing racial hiring disparities in public safety, fighting school inequities, and supporting charter school innovation.
+Despite enormous progress, Jackson has continually reminded the community of ongoing challenges. “Our job is really to agitate… to bring to the community conscience things that need to be changed,” he said. His leadership emphasized the importance of vigilance, courage, and the power of local action.
+Attorney Don Jackson’s legacy is one of tireless advocacy, integrity, and deep love for his community. Through law, leadership, and unrelenting commitment, he has opened doors for future generations and honored the civil rights struggles of those who came before.
+
+                                        </p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+ <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Ernestine Jackson Picture.jpg" class="img-fluid rounded-circle mb-2" alt="Attorney Don Jackson">
+                                <small class="text-muted fst-italic">Ernestine Jackson (Class of 1959): Distinguished Alumna Inductee</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Ernestine Jackson (Class of 1959)</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Alumnus Inductee</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+Ernestine Jackson dedicated her life to advancing civil rights, equal opportunity, and public service across Central Illinois. Her impactful career began in the late 1960s at the University of Illinois, launching nearly five decades of leadership in affirmative action, diversity, and human relations.
+In Peoria, while others marched in the streets, Ernestine fought discrimination inside City Hall. She became the City of Peoria’s first Director of Fair Employment and Housing. Her service also extended to Champaign, where she was Assistant to the City Manager; to CILCO as Director of Diversity; to the University of Illinois as Personnel Officer; and to Bloomington as Director of Human Relations and later EEOC Director.
+Though her job titles changed, her mission never did: open doors to employment, housing, and opportunity for all. Her work led to countless individuals being hired, promoted, and awarded contracts that might have otherwise been denied.
+In 2015, the same year she retired from public service at age 75, she was elected to the Peoria District 150 School Board, representing District 3.
+Active in the NAACP, Illinois Affirmative Action Officers Association, and a founding member of Liberty Church and the Heritage Ensemble, Ernestine was also honored by Delta Sigma Theta Sorority in 2023.
+Despite her long list of accomplishments, Ernestine always said her greatest pride was in being a wife, mother, grandmother, and great-great-grandmother. She remains a powerful example of purpose, perseverance, and pride for the Manual High School community.
+
+                                        </p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/George G Graves PIc 1.jpg" class="img-fluid rounded-circle mb-2" alt="Attorney Don Jackson">
+                                <small class="text-muted fst-italic">George Graves: Distinguished Instructor Inductee</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">George Graves</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Manual High School Band Director, 1977–2008 , Distinguished Alumnus Inductee</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+For over three decades, Mr. George G. Graves, Jr. served as Manual High School’s beloved Band Director, shaping the lives of thousands of students through music, mentorship, and dedication. From 1977 to 2008, he built a comprehensive band program that included marching band, pep band, concert band, and jazz band. He not only inspired students within the classroom but also extended his reach to Manual’s feeder schools, promoting the value and joy of music education.
+Mr. Graves provided life-enriching experiences for his students, including leading the MHS Band twice at the Disney World Band Competition and twice in New Orleans Mardi Gras Parades. Under his direction, the band also competed at Six Flags and other regional festivals. He founded the Manual Alumni Band in the 1990s, creating a lasting legacy of community and pride.
+A gifted saxophonist and passionate performer, Mr. Graves is a charter member of both the Prairie Wind Ensemble and the Central Illinois Jazz Orchestra. He served as director of the Peoria Park District’s Senior Summer Band and Stage Band in the 1980s and continues to serve as Manager and Assistant Director of the Peoria Municipal Band.
+His legacy lives on in the countless students he taught, the bands he built, and the music he shared with his wife, Martha, and children, Erica and Darren. Mr. Graves remains an enduring symbol of excellence in arts education at Manual High School.
+
+                                        </p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-  <!-- Content Wrapper -->
-   <!-- Content Wrapper -->
-   <div class="container my-5">
-    <!-- Section Title -->
+                                 <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Ms Gipson Picture.jpg" class="img-fluid rounded-circle mb-2" alt="Attorney Don Jackson">
+                                <small class="text-muted fst-italic">Audrey Gipson: Distinguished Counselor Inductee</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Audrey Gipson</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Counselor | Class of 1958 (Educator in Peoria Public Schools 1958–1997)</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+Audrey “Mama G.” Gipson’s legacy at Manual High School spans nearly three decades of unparalleled service, compassion, and advocacy. The eleventh of 17 children, she was born in Litchfield, Illinois and graduated from Illinois State University in 1958, becoming the first Black female high school teacher in District 150. After earning her Master’s in Counseling from Bradley University, she began her life-changing tenure as a Manual High School guidance counselor in 1970.
+Throughout her 27 years at Manual, Mrs. Gipson guided generations of students with wisdom, empathy, and unwavering support. Often seen as a second mother, she went on to foster Haitian refugees, teen mothers, and Chicago-area children through Catholic Social Services. Her belief in every student’s potential shaped lives far beyond graduation.
+Her community impact is equally vast. She served with the Tri-County Urban League, the National Association of University Women, College Bound for Excellence, and helped found the ISU Black Colleagues Association. Her many honors include the Omega Citizen of the Year Award, the Valeska S. Hinton Human Rights Award, and a surprise WEEK-TV tribute for her service at Manual.
+Though she moved to Georgia in 1998, Mrs. Gipson continues to uplift Peoria youth through the Audrey Bryant Gipson Scholarship. Her enduring love for the Manual Rams is reflected in her famous motto: “I’ve Got The Best Alumni, Really!” (IGTBAR) — a legacy forever etched into the heart of Manual High School.
+
+                                        </p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-    <div class="row align-items-start">
-		<h1 class="text-center mb-5" style="font-family: 'Heebo', sans-serif; color: #DAA520;">
-			HALL OF FAME
-		  </h1>
-      <!-- Board Members Column -->
-      <div class="col-12 col-md-6 mb-4">
-        <h2 class="h4  mb-3" style="font-family: 'Nunito', sans-serif;">
-			MHS Hall of Fame Inductees
-        </h2>
-		<ol type="I" class="list-unstyled" style="text-align: left; line-height: 1.6;">
-			<li>Distinguished Alumni Hall of Fame
-			  <ol type="a">
-				<li>Ken Hinton (Class of 1964): Distinguished Alumnus Inductee &amp; Former Peoria Public Schools District 150 Superintendent
-				  <ol type="i">
-					<li>Chris Duncan accepting plaque on behalf of Honoree Superintendent Ken Hinton &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-				<li>Attorney Don Jackson (Class of 1956): Distinguished Alumnus Inductee
-				  <ol type="i">
-					<li>Dale &amp; Donald Jackson accepting award on behalf of their Father Attorney Don Jackson &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-				<li>Ernestine Jackson (Class of 1959): Distinguished Alumna Inductee
-				  <ol type="i">
-					<li>Dale &amp; Donald Jackson accepting award on behalf of their Mother Ernestine Jackson &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-				<li>George Graves: Distinguished Instructor Inductee</li>
-				<li>Audrey Gipson: Distinguished Counselor Inductee
-				  <ol type="i">
-					<li>Honoree Audrey Gipson &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-				<li>Dr. Valeria Pierce (Class of 1969): Distinguished Alumna Inductee
-				  <ol type="i">
-					<li>Honoree Dr. Valeria Pierce &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-				<li>Sharon Crews: Distinguished Instructor Inductee
-				  <ol type="i">
-					<li>Honoree Sharon Crews &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-			  </ol>
-			</li>
-		  
-			<li>Boys Basketball Coach Hall of Fame
-			  <ol type="a">
-				<li>Coach Wayne McClain (Class of 1972): Distinguished Athletic &amp; Coach Inductee (Basketball)
-				  <ol type="i">
-					<li>Deshe &amp; Sergio McClain &amp; Coach McClain’s Grandchildren accepting award on behalf of Coach Wayne McClain &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-			  </ol>
-			</li>
-		  
-			<li>Boys Basketball Hall of Fame
-			  <ol type="a">
-				<li>Sergio McClain (Class of 1997): Distinguished Athletic Inductee (Basketball)
-				  <ol type="i">
-					<li>Honoree Sergio McClain &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-				<li>Marcus Griffin (Class of 1997): Distinguished Athletic Inductee (Basketball)
-				  <ol type="i">
-					<li>Honoree Marcus Griffin &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-				<li>Frank Williams (Class of 1998): Distinguished Athletic Inductee</li>
-				<li>Howard Nathan (Class of 1991): Distinguished Athletic Inductee (Basketball)</li>
-			  </ol>
-			</li>
-		  
-			<li>Boys Track Coach Hall of Fame
-			  <ol type="a">
-				<li>Coach Dennis Winkler: Distinguished Coach &amp; Instructor Inductee (Track)
-				  <ol type="i">
-					<li>Darren Winkler accepting award on behalf of his father Honoree Coach Dennis Winkler &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-			  </ol>
-			</li>
-		  
-			<li>Boys Track Hall of Fame
-			  <ol type="a">
-				<li>Jimmy Lacy (Class of 1998): Distinguished Athletic Inductee (Track)
-				  <ol type="i">
-					<li>Honoree Jimmy Lacy &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-				<li>Coach Jarrod Macklin (Class of 1998): Distinguished Athletic Inductee (Track)
-				  <ol type="i">
-					<li>Honoree Coach Jarrod Macklin &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-				<li>Edward Macklin (Class of 1993): Distinguished Athletic Inductee (Track)
-				  <ol type="i">
-					<li>Coach Jarrod Macklin accepting award on behalf of his brother Honoree Edward Macklin &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-				<li>Chris Johnson (Class of 1983): Distinguished Athletic Inductee (Track)
-				  <ol type="i">
-					<li>Honoree Chris Johnson &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-			  </ol>
-			</li>
-		  
-			<li>All-Around Sportsman Hall of Fame
-			  <ol type="a">
-				<li>Gene Petty (Class of 1957): Distinguished Athletic Inductee (Football, Baseball, Basketball, &amp; Golf)
-				  <ol type="i">
-					<li>Honoree Gene Petty with Family</li>
-				  </ol>
-				</li>
-				<li>Al Smith (Class of 1965): Distinguished Athletic Inductee (Football, Baseball, &amp; Basketball)
-				  <ol type="i">
-					<li>Devear Lewis accepting award on behalf of Honoree Al Smith &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-			  </ol>
-			</li>
-		  
-			<li>Boys Football Hall of Fame
-			  <ol type="a">
-				<li>Donald Willingham (Class of 1969): Distinguished Athletic Inductee (Football)
-				  <ol type="i">
-					<li>Bill Willingham accepting award on behalf of Honoree Donald Willingham &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-				<li>Earl Gant (Class of 1975): Distinguished Athletic Inductee (Football)
-				  <ol type="i">
-					<li>Honoree Earl Gant &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-			  </ol>
-			</li>
-		  
-			<li>Girls Track Coach Hall of Fame
-			  <ol type="a">
-				<li>Larry Hendricks: Distinguished Coach &amp; Instructor Inductee
-				  <ol type="i">
-					<li>Honoree Larry Hendricks &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-			  </ol>
-			</li>
-		  
-			<li>Girls Track Hall of Fame
-			  <ol type="a">
-				<li>Clorissa Yates-Nickels (Class of 1994): Distinguished Athletic Inductee
-				  <ol type="i">
-					<li>Honoree Clorissa Yates-Nickels &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-				<li>Latoya Howard (Class of 2003): Distinguished Athletic Inductee
-				  <ol type="i">
-					<li>Honoree Latoya Howard &amp; MASRA Chairperson Hosea Washington</li>
-				  </ol>
-				</li>
-			  </ol>
-			</li>
-		  </ol>
-      </div>
-	  <div class="col-12 col-md-6 mb-4">
-		<h2 class="h4  mb-3" style="font-family: 'Nunito', sans-serif;">
-			Special Picture Captions for Hall of Fame Banquet
-        </h2>
 
-		<ol type="i">
-		  <li>1st Annual MHS Hall of Fame Banquet Mayor Dr. Rita Ali</li>
-		  <li>1st Annual MHS Hall of Fame Banquet Speaker Jamere Jackson</li>
-		  <li>1st Annual MHS Hall of Fame Banquet MC Dr. Dominic Washington</li>
-		  <li>1st Annual MHS Hall of Fame Banquet Entertainment – MuziqueBaux Band</li>
-		  <li>1st Annual MHS Hall of Fame Board Members Mrs. Brenda Grove &amp; Mrs. Sha&#39;ron Ford</li>
-		</ol>
-		</div>
 
+                                 <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Dr Pierce Picture 1.jpg" class="img-fluid rounded-circle mb-2" alt="Attorney Don Jackson">
+                                <small class="text-muted fst-italic">Dr. Valeria Pierce (Class of 1969): Distinguished Alumna Inductee</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Dr. Valeria Pierce</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Educator | Class of 1969</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+A proud graduate of Manual High School’s Class of 1969, Dr. Valaria Pierce grew up just blocks from campus, where her passion for education was sparked as early as age five. She pursued her dream at Illinois State University, earning a B.S. in Elementary Education in 1973, followed by a 38-year career devoted to shaping young minds.
+Dr. Pierce began her journey as a first-grade teacher at McKinley School and went on to serve Peoria Public Schools in several impactful roles—staff developer, teacher mentor, reading coach, assistant principal, and eventually as the academy leader for Manual’s 7th and 8th grades. Her excellence in education earned her the title of Illinois Teacher of the Year and the National Milken Educator Award, both in 1997. In recognition of her lifelong commitment to learning, she was inducted into the Illinois State University College of Education Hall of Fame.
+Dr. Pierce holds a master’s degree in Reading and a doctorate in Educational Administration, earned in 2009 from ISU. After retiring in 2011, she continued serving students as a university supervisor for Bradley University and currently works as a Title I tutor at Christ Lutheran School.
+Beyond education, she serves in ministry alongside her husband, Pastor Tony Pierce, at Heaven’s View Christian Fellowship and performs with the music ministry “Women of Vision.” A devoted wife, mother, and grandmother, Dr. Pierce’s legacy of leadership, learning, and love continues to uplift generations.
+
+                                        </p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                                                 <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Sharon Crews Picture.jpg" class="img-fluid rounded-circle mb-2" alt="Attorney Don Jackson">
+                                <small class="text-muted fst-italic">Sharon Crews: Distinguished Instructor Inductee</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Sharon Crews</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Educator | Manual High School Instructor (1969–2005)</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+Sharon Crews dedicated over 36 years of her life to teaching English, with most of that time spent shaping young minds at Manual High School. She began her career at Allen Academy (Roosevelt) before transferring to Manual in 1969, where she became a cornerstone of the English department until her retirement in 2005. Driven by a deep love for teaching and commitment to her students, she continued long past the point of eligibility for retirement—because, to Sharon, teaching was never just a job.
+Throughout her tenure, Ms. Crews taught a variety of English courses, developed curriculum, and served as the long-time sponsor of Ram Pages, the school newspaper. She was a passionate advocate for educational equity, using her voice and influence to champion justice—especially on issues related to race and academic standards.
+Even after retiring, Sharon remained a tireless advocate for Manual High School and Peoria District 150. She became a familiar presence at school board meetings, offering thoughtful insights and persistent calls for higher academic expectations and integrity.
+Her impact spans generations. It’s rare for her to walk into any public space in Peoria without being warmly greeted by a former student. Her legacy is defined not only by the lessons she taught in the classroom but also by the lifelong connections she made and the community she continues to uplift.
+
+                                        </p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <!-- Basketball Coaches Tab Pane -->
+            <div class="tab-pane fade" id="bball-coach-pane" role="tabpanel" aria-labelledby="bball-coach-tab">
+                <!-- Inductee Card: Coach Wayne McClain -->
+                <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Wayne McClain Picture.jpg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic">Coach Wayne McClain (Class of 1972): Distinguished Athletic &amp;
+Coach Inductee (Basketball)</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Wayne McClain</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Coach | Manual High School Basketball Legend
+Class of 1972</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>Wayne McClain, a 1972 graduate of Manual High School and 1977 Bradley University alumnus, is one of the most celebrated basketball coaches in Illinois high school history. After 18 seasons as an assistant to Hall of Famer Dick Van Scyoc—including the 1994 state title—McClain took over as head coach and led Manual to three consecutive IHSA Class AA state championships in 1995, 1996, and 1997. In 1997, he was named USA Today National Coach of the Year after guiding the Rams to a No. 1 national ranking.
+Under McClain, Manual’s basketball program became a national powerhouse. From 1995–1999, his teams won five straight Mid-State Conference titles and made five consecutive Sweet 16 appearances. His leadership helped shape a generation of players, including future NBA talent, while maintaining Manual’s tradition of discipline, defense, and excellence.
+McClain joined the University of Illinois coaching staff in 2001, contributing to nine NCAA Tournament appearances and a run to the national championship game in 2005. He later returned to high school coaching at Champaign Central, where he led a major turnaround in his lone season before his untimely passing in 2014.
+Coach McClain’s legacy is one of excellence, mentorship, and community pride. He exemplified what it means to lead with integrity, humility, and vision. His influence continues to be felt throughout Peoria, the state of Illinois, and beyond. Today, we honor Coach McClain as the architect of a basketball dynasty—and a true Manual Ram forever.
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Boys Basketball Players Tab Pane -->
+            <div class="tab-pane fade" id="bball-players-pane" role="tabpanel" aria-labelledby="bball-players-tab">
+                <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Sergio McClain Picture.jpg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic">Sergio McClain (Class of 1997): Distinguished Athletic Inductee (Basketball)</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Sergio McClain</h4>
+                                <h6 class="card-subtitle mb-2 text-muted"> Distinguished Athlete | Class of 1997
+Class of 1972</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+Sergio McClain is one of Illinois' most accomplished high school basketball players. A four-year starter, he helped lead Peoria Manual High School to an unprecedented four consecutive IHSA state championships from 1994–1997, earning a No. 1 national ranking by USA Today his senior year. Sergio started all 32 postseason games during the historic run—a state record—and was named 1997 Illinois Mr. Basketball and a McDonald’s All-American.
+A three-time All-State honoree, McClain went on to star at the University of Illinois, playing in 128 games and helping the Illini win two Big Ten titles and reach the 2001 NCAA Elite Eight. Known for his leadership, defense, and versatility, McClain later transitioned into coaching, including stints at Parkland College, Champaign Central High School, and professionally with the Champaign Swarm.
+Sergio McClain’s legacy as a player and leader continues to inspire athletes across Illinois and beyond.
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Marcus Griffin.jpeg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic"><br>Marcus Griffin (Class of 1997): Distinguished Athletic Inductee (Basketball)</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Marcus Griffin</h4>
+                                <h6 class="card-subtitle mb-2 text-muted"> Distinguished Athlete | Class of 1997</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+A dominant force in the paint, Marcus Griffin played a key role in Peoria Manual High School’s historic four consecutive IHSA state basketball championships from 1994–1997. Known for his athleticism, energy, and toughness, Griffin was a two-time All-State selection and earned national recognition, including honorable mention All-American by USA Today and MVP honors at the Adidas Big Time Tournament.
+After high school, Griffin starred at Lincoln College, where he was named NJCAA National Division II Player of the Year, averaging 20.3 points and 9.3 rebounds. He continued his success at the University of Illinois, earning All-Big Ten honors and helping lead the Illini to the Elite Eight in 2001. As the team’s second-leading scorer, he averaged 11.3 points per game his senior season.
+Marcus Griffin’s legacy as a competitor and champion continues to inspire the next generation of Manual Rams.
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Frankie Williams.jpg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic"><br>Frank Williams (Class of 1998): Distinguished Athletic Inductee</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Frank Williams</h4>
+                                <h6 class="card-subtitle mb-2 text-muted"> Distinguished Athlete | Class of 1998</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+A dynamic point guard, Frankie Williams was a driving force behind Peoria Manual’s basketball dynasty, helping lead the Rams to the final two titles of their historic four-peat in 1996 and 1997. A McDonald’s All-American and Illinois Mr. Basketball in 1998, Williams averaged 23 points, 8 rebounds, and 6 assists as a senior. He was twice named to the IHSA All-Tournament Team.
+At the University of Illinois, Williams was a two-time team MVP, 2001 Big Ten Player of the Year, and finished his career with 1,440 points and 497 assists. He led the Illini to multiple NCAA Tournament appearances, including the Elite Eight in 2001 alongside fellow Manual alumni Marcus Griffin and Sergio McClain.
+Selected in the first round of the 2002 NBA Draft, Williams played with the New York Knicks and Chicago Bulls. In 2007, he was honored as one of the "100 Legends of IHSA Basketball."
+
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Howard Nathan Picture.jpg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic"><br>Howard Nathan (Class of 1991): Distinguished Athletic (Basketball)</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Howard Nathan</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Athlete | Class of 1991</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+A true Peoria basketball icon, Howard Nathan dazzled fans with his flashy style, defensive grit, and rainbow jumper. He led Manual High School to three IHSA state tournament appearances (1988, 1990, 1991), finishing as state runner-up his senior year. In the 1991 title game, Nathan poured in 19 points—11 in the final five minutes—while setting a record with 13 three-point attempts. That year, he was crowned Illinois Mr. Basketball, becoming the shortest player (5'10") ever to win the award at the time, and earned McDonald’s All-American honors.
+Nathan continued his career at DePaul and Louisiana-Monroe before making history as the first Peorian to play in the NBA, suiting up for the Atlanta Hawks in the 1995–96 season.
+Even after an accident left him paralyzed in 2006, Nathan remained a powerful presence in the community, a living legend whose legacy continues to inspire generations of Peoria athletes.
+
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Track Coaches Tab Pane -->
+            <div class="tab-pane fade" id="track-coach-pane" role="tabpanel" aria-labelledby="track-coach-tab">
+                 <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Dennis Winkler.jpg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic"><br>Coach Dennis Winkler: Distinguished Coach &amp; Instructor Inductee (Track)</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Dennis Winkler</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Coach | Manual Track & Field (1969–2000)</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+For 31 seasons, Coach Dennis Winkler built Manual High School into a powerhouse in Illinois high school track and field. After graduating from Millikin University and serving two years as a Manual assistant, Winkler became head coach and led the Rams from 1969 until his retirement in 2000. During his legendary tenure, Winkler’s teams amassed a remarkable 505–23 dual meet record, a testament to his discipline, vision, and leadership.
+Under his guidance, the Rams captured 18 conference championships, 16 Class AA sectional titles, and an incredible 132 major meet victories. His athletes earned 180 conference titles, 102 sectional crowns, and 358 state finals qualifications, producing 62 state medals and setting seven Peoria-area records. Manual’s track program reached new heights under Winkler, including winning the 1998 Indoor State Championship and finishing third in the Class AA Outdoor State Meet that same year.
+Every Manual High School track record was set during Coach Winkler’s era. His passion for excellence extended beyond competition, culminating in one of his proudest accomplishments—the installation of an eight-lane all-weather track on campus, ensuring future generations would have the facilities to continue the tradition he built.
+Coach Winkler’s legacy is one of unmatched success, mentorship, and commitment to Manual student-athletes, earning him a well-deserved place in the Manual High School Athletic Hall of Fame.
+
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Larry Hendricks.jpg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic"><br>Larry Hendricks: Distinguished Coach &amp; Instructor Inductee</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Larry Hendricks</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Coach & Instructor | Manual High School (1970–2004))</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+For over four decades, Larry Hendricks served as a transformative force at Manual High School, shaping lives through education, athletics, and the arts. A dedicated art teacher and department head, Mr. Hendricks inspired generations of students to find their voice creatively, founding the Manual Afro Club and advising the art club to uplift cultural pride and self-expression.
+On the field and court, he coached both boys’ and girls’ track and field, girls’ basketball, and served as the school’s first boys’ soccer coach. His coaching achievements include developing all-conference and All-American athletes and leading the school’s 1988 track relay team to a still-unbroken record. He was named Coach of the Year for Girls’ Basketball and respected as a mentor who instilled discipline, confidence, and character in his athletes.
+Beyond school walls, Mr. Hendricks was affectionately known as the “Godfather of Peoria Talent” for his dedication to the city’s youth through talent shows and community engagement. In 2024, an honorary street—Larry Hendricks Jr. Ave—was unveiled at Griswold and Lincoln, behind the very classroom where he mentored thousands. His lasting legacy continues through his photography, as a resident artist at the Contemporary Arts Center.
+More than a teacher or coach, Larry Hendricks is remembered as a father figure, a builder of futures, and a cornerstone of the Manual High School community.
+
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Boys Track Tab Pane -->
+            <div class="tab-pane fade" id="boys-track-pane" role="tabpanel" aria-labelledby="boys-track-tab">
+                 <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/jimmy lacy.jpg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic"><br>Jimmy Lacy (Class of 1998): Distinguished Athletic Inductee (Track)</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Jimmy Lacy – Class of 1998</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Athlete | Track & Field</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+Jimmy Lacy, a proud Manual High School alum, is regarded as one of the most decorated sprinters in Peoria history. A three-time conference and sectional champion in the 100m, 200m, 4x100m, and 4x200m relays, he capped his high school career with a standout performance at the IHSA state championships—finishing 2nd in the 4x200m, 3rd in the 200m, and 5th in the 100m. He still holds Manual’s school records in the 200m, 4x100m, and 4x200m.
+Jimmy earned All-American honors at Parkland College before receiving a scholarship to the University of Illinois, where he continued his success on the track and earned his degree.
+Today, Jimmy’s legacy lives on through his family. Both of his sons compete in Division I track at Eastern Illinois University, with his youngest winning IHSA 3A state titles in the 100m, 200m, and 400m—an elite accomplishment. Jimmy Lacy remains a symbol of excellence, pride, and lasting impact.
+
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Jarrod 2 with Lacy in Middle.jpg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic"><br>Coach Jarrod Macklin (Class of 1998): Distinguished Athletic
+Inductee (Track)</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Jarrod Macklin – Class of 1998</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Athlete | Track & Field</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+A 1998 Manual High School graduate, Jarrod Macklin was a two-sport letterman in football and track. He left his mark on Manual’s record books, holding school records in the 300m hurdles (37.7), and ranking #2 all-time in the 110m hurdles (13.8), as well as all three sprint relays (4x100, 4x200, 4x400). He led the Rams to a 1998 indoor state title and a third-place finish at the outdoor state meet—with just six athletes.
+Macklin earned a full scholarship to Eastern Illinois University, where he still holds the 400m record (46.2). A six-time Ohio Valley Conference champion and two-time OVC Athlete of the Year, he posted elite collegiate times in the 200m (20.6), 400m (46.2), and 400m hurdles (50.5).
+Now based in Tampa, Florida, Macklin founded Westchase Cheetahs Track Club and has coached 13 youth national champions—passing on his excellence and building the next generation of champions.
+
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Slide182.JPG" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic"><br>Coach Jarrod Macklin (Class of 1998): Distinguished Athletic
+Inductee (Track)</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Christopher K. Johnson</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Athlete | Class of 1983</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+Christopher K. Johnson was one of the most versatile and dominant track athletes in Manual High School history. A football and track standout, Johnson led the Rams to conference and sectional championships in multiple relay and sprint events. In 1983, he set the Peoria-area record in the 400-meter dash (47.7), which stood for 29 years and remains Manual’s school record. He was a state finalist in the 400, finishing 6th despite battling illness. Johnson was also part of the record-setting two-mile relay team and earned numerous individual titles in the 200m and 400m events.
+A leader on and off the track, Johnson was captain of the track and football teams, earning All-Conference and Honorable Mention All-State honors in football. He earned a full athletic scholarship to Eastern Illinois University and later founded the Gentlemen of Distinction mentoring program. Today, he continues to serve the Peoria community with distinction.
+
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- Girls Track Tab Pane -->
+            <div class="tab-pane fade" id="girls-track-pane" role="tabpanel" aria-labelledby="girls-track-pane">
+                 <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Clorissa Nickels Picture.jpg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic"><br>Clorissa Yates-Nickels (Class of 1994): Distinguished Athletic
+inductee</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Clorissa “Crete” Yates-Nickels</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Class of 1994 | Track & Field</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+Clorissa Yates-Nickels was one of Manual High School’s most accomplished female sprinters. Earning varsity letters all four years, she consistently dominated the 100- and 200-meter dash. She was a four-time state qualifier and finalist in the 100 meters and held the school record in that event for decades. A multiple-time All-Conference and All-State honoree, Clorissa also appeared on the IHSA Honor Roll throughout her high school career, earning numerous medals in both individual and relay events.
+Clorissa continued her track career at Arkansas State University, where she became a key member of the school’s record-holding 4x100 relay team. Off the track, she excelled academically, later earning a master’s degree in nursing. Today, she serves as an operations manager in healthcare and remains a proud mother of two, including a daughter who followed in her footsteps in track and nursing.
+
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                 <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/latoya.jpg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic"><br>Latoya Howard (Class of 2003): Distinguished Athletic Inductee</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Latoya Howard</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Class of 2003 | Girls Track & Field</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+Latoya Howard was one of Manual High School’s most accomplished female sprinters, excelling in the 100m, 200m, 4x100m, and 4x200m relays. During her standout career from 1999 to 2003, she was a four-time state qualifier and set the conference and school record in the 200-meter dash with a time of 24.7 seconds. Latoya made history as a four-time team MVP, a record unmatched in the program’s history.
+Her passion and determination extended beyond high school, where she continued competing at Danville Community College. Today, Latoya serves as a dedicated school paraprofessional and is a proud mother of two. She continues to inspire others through her commitment to family, education, and the values she learned through athletics. Her journey from the track to the classroom is a testament to perseverance, excellence, and leadership.
+
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Football Tab Pane -->
+            <div class="tab-pane fade" id="football-pane" role="tabpanel" aria-labelledby="football-tab">
+                 <!-- Add cards for Donald Willingham, Earl Gant here -->
+                     <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Don Willingham.jpg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic"><br>Donald Willingham (Class of 1969): Distinguished Athletic Inductee(Football)</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Donald "Big Don" Willingham</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Athlete | Class of 1969</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+Donald Willingham was a dominant three-sport athlete at Manual High School, excelling in football, wrestling, and track & field. Known for his strength, speed, and versatility, Don graduated holding school records in the 100-yard dash, shot put, and pole vault — a rare combination of athletic range. On the football field, his standout performances earned him national recruitment attention, including an offer from top-ranked University of Nebraska. He was later drafted into the NFL by the Oakland Raiders and went on to become the leading rusher for the Calgary Stampeders in the Canadian Football League. In wrestling, Don was an undefeated conference champion, showcasing his all-around athletic dominance. His legacy remains one of Manual’s most versatile and accomplished athletes.
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                     <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Earl Gant.jpg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic"><br>Earl Gant (Class of 1975): Distinguished Athletic Inductee (Football)</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Earl Gant</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Athlete | Class of 1975</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+Earl Gant was a dynamic halfback for Manual High School, earning all-state honors and MVP of the 1975 Illinois East-West All-Star Game. His standout high school career led him to the University of Missouri, where he rushed for 1,837 yards and 10 touchdowns over three seasons. Gant’s collegiate highlights include a 197-yard game against Oklahoma and a four-touchdown performance versus Kansas. In 1979, he was drafted by the Kansas City Chiefs in the fifth round of the NFL Draft. Gant played professionally with both the Chiefs and the Birmingham Stallions of the USFL, finishing his career with over 1,200 rushing yards and nine total touchdowns. A 2003 inductee into the Greater Peoria Sports Hall of Fame, Gant remains one of Manual’s most accomplished football alumni, remembered for his speed, power, and determination on the field.</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All-Around Sportsman Tab Pane -->
+            <div class="tab-pane fade" id="all-around-pane" role="tabpanel" aria-labelledby="all-around-pane">
+                 <!-- Add cards for Gene Petty, Al Smith here -->
+                   <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Gene Petty Picture.jpg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic"><br>Gene Petty (Class of 1957): Distinguished Athletic Inductee
+(Football, Baseball, Basketball, &amp; Golf)
+Inductee (Track)</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Gene Petty</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Athlete | Class of 1958</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+Gene Petty stands among the most versatile and gifted athletes in Manual High School history. A three-sport standout in the late 1950s, he earned All-State honors in both football and baseball and was selected to the All-City basketball team. As a dynamic halfback, he led Coach Ken Hinrichs’ Rams to impressive 8-1-1 and 7-1-2 seasons in 1956 and 1957, earning All-City honors both years.
+Though recruited by top Big Ten and Big Eight football programs, Petty chose to pursue professional baseball, signing a bonus contract with the Chicago Cubs in 1958. He played in their farm system through 1961, including stints in St. Cloud of the Northern League, while also attending college during the off-seasons.
+In 1963, he briefly signed with the Buffalo Bills as a placekicker, but did not appear in an NFL game. Back in Peoria, Gene shifted his athletic focus to golf, playing 15 years in the championship flight of the city tournament and qualifying for five Peoria Publinks teams.
+Petty later served as golf professional at Madison Golf Course for the Peoria Park District. Now retired, he celebrates over 62 years of marriage with his wife Jackie, and is a proud father and grandfather.
+
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                   <div class="card mb-4">
+                    <div class="card-body p-4">
+                         <div class="row g-4 align-items-center">
+                            <div class="col-md-3 text-center">
+                                <img src="assets/img/hall/Al Smith.jpg" class="img-fluid rounded-circle mb-2" alt="Coach Wayne McClain">
+                                <small class="text-muted fst-italic"><br>Al Smith (Class of 1965): Distinguished Athletic Inductee (Football,
+Baseball, &amp; Basketball)</small>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="card-title">Al Smith</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Distinguished Athlete | Class of 1965</h6>
+                                <hr>
+                                <blockquote class="blockquote">
+                                    <p>
+Al Smith was one of the most celebrated multi-sport athletes in Peoria history. At Manual High School, he earned All-State honors in football, basketball, and baseball. As a standout halfback, he led the Rams in football, and in baseball, he pitched Manual to the 1965 state championship, throwing a legendary 12-inning shutout and securing the title in relief the next day.
+Smith chose Bradley University for basketball, where he became a two-time All-Missouri Valley Conference selection and scored 1,408 career points — still among the top 20 in school history. He took a two-year break from college to serve in the U.S. Army during the Vietnam War, where he continued to excel in athletics.
+Professionally, Smith played five seasons in the ABA with the Denver Rockets and Utah Stars, leading the league in assists in 1974 and earning team MVP honors. He was later inducted into both the Bradley Athletics Hall of Fame and the Greater Peoria Sports Hall of Fame, and was named to Bradley's All-Century Team in 2004.
+After basketball, Smith dedicated his life to youth as a social worker and coach, including contributing to two Manual state championship teams as an assistant. His legacy as a competitor, veteran, and mentor remains strong in Peoria.
+
+</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+            
+
+        </div>
+
+        <!-- Hall of Fame Banquet Highlights (This section remains outside/after the tabs) -->
+        <div class="text-center mt-5 wow fadeInUp" data-wow-delay="0.1s">
+            <h2 class="mb-5" style="font-family: 'Heebo', sans-serif;">Banquet Highlights</h2>
+        </div>
+        <div class="row g-4 text-center">
+            <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="card">
+                    <img src="assets/img/placeholder_event.jpg" class="card-img-top" alt="Banquet Photo 1">
+                    <div class="card-body">
+                        <p class="card-text">1st Annual MHS Hall of Fame Banquet Mayor Dr. Rita Ali</p>
+                    </div>
+                </div>
+            </div>
+             <!-- ... other banquet highlight cards ... -->
+        </div>
     </div>
-  </div>
-  <!-- Content Wrapper End -->
 
-  <!-- Content Wrapper End -->
-
-  <!-- Optional footer could go here -->
-
-    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
 </body>
 </html>
-
-
