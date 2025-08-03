@@ -42,6 +42,56 @@
         .nav-pills .nav-link:not(.active):focus {
             color: #DAA520; /* Orange text on hover for non-active tabs */
         }
+
+        /* Custom styles for nomination section */
+.nomination-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nomination-form-container {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.form-toggle-btn {
+    background: linear-gradient(45deg, #DAA520, #B8860B);
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(218, 165, 32, 0.3);
+}
+
+.form-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(218, 165, 32, 0.4);
+    color: white;
+}
+
+.google-form-embed {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .nomination-section {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+    
+    .google-form-embed {
+        height: 600px !important;
+    }
+}
     </style>
 </head>
 
@@ -84,6 +134,40 @@
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
              <h1 class="mb-5" style="font-family: 'Heebo', sans-serif; color: #DAA520;">HALL OF FAME INDUCTEES</h1>
         </div>
+        <!-- Nomination Section - Prominently placed at the top -->
+<div class="nomination-section wow fadeInUp" data-wow-delay="0.15s">
+    <div class="text-center mb-4">
+        <h2 style="color: #DAA520; font-family: 'Heebo', sans-serif;">
+            <i class="fas fa-star me-2"></i>Please Submit Manual High School Hall of Fame Nomination Form for Athletic Hall of Fame & Distinguished Alumn
+        </h2>
+        <p class="lead mb-4">Our next Hall of Fame Banquet is scheduled Saturday, June 6, 2026. Details will be forthcoming in the near future.</p>
+        
+        <button class="btn form-toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#nominationForm" aria-expanded="false" aria-controls="nominationForm">
+            <i class="fas fa-plus me-2"></i>Submit a Nomination
+        </button>
+    </div>
+    
+    <div class="collapse mt-4" id="nominationForm">
+        <div class="nomination-form-container">
+            <div class="text-center mb-3">
+                <h4 style="color: #0F172B;">Nomination Form</h4>
+                <p class="text-muted">Please fill out all required fields. Your nomination will be reviewed by our selection committee.</p>
+            </div>
+            
+            <!-- Replace this URL with your actual Google Form embed URL -->
+            <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLScNERpWOom4K9jHYHA9DCx-V9OfvCbGxx_avc1Ipkrcy7gxFA/viewform?embedded=true" 
+                class="google-form-embed" 
+                width="100%" 
+                height="800" 
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0">
+                Loading…
+            </iframe>
+        </div>
+    </div>
+</div>
 
         <!-- Tab Navigation -->
         <ul class="nav nav-pills nav-fill flex-wrap mb-4 wow fadeInUp" data-wow-delay="0.2s" id="hofTabs" role="tablist">
