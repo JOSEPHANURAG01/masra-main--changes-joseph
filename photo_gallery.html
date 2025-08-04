@@ -3,11 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-	<title>Peoria M.A.S.R.A</title>
+    <title>Peoria M.A.S.R.A</title>
     <meta content="" name="keywords">
     <meta content="" name="description">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    <!-- Favicon -->
-	<link rel="icon" href="assets/img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/favicon.ico">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,6 +30,7 @@
     <link href="css/style.css" rel="stylesheet">
 
     <style>
+        /* General Gallery Card Styles */
         .gallery-card {
             transition: all 0.3s ease;
             border: none;
@@ -59,7 +61,7 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(45deg, rgba(218, 165, 32, 0.7), rgba(0, 0, 0, 0.5));
-            opacity: 0.8; /* Changed from 0 to 0.8 to make it always visible */
+            opacity: 0.8;
             transition: opacity 0.3s ease;
             display: flex;
             align-items: center;
@@ -67,7 +69,7 @@
         }
         
         .gallery-card:hover .gallery-overlay {
-            opacity: 1; /* Slightly more opaque on hover */
+            opacity: 1;
         }
         
         .view-gallery-btn {
@@ -155,117 +157,7 @@
             background: #DAA520;
         }
 
-        /* Lightbox Modal Styles */
-        .lightbox-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .lightbox-modal.show {
-            display: flex;
-            opacity: 1;
-        }
-
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .lightbox-header {
-            background: #DAA520;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s ease;
-        }
-
-        .lightbox-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .lightbox-gallery {
-            padding: 20px;
-            max-height: 70vh;
-            overflow-y: auto;
-        }
-
-        .lightbox-image-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .lightbox-image-item {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .lightbox-image-item:hover {
-            transform: scale(1.05);
-        }
-
-        .lightbox-image {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-
-        .lightbox-image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-
-        .lightbox-image-item:hover .lightbox-image-overlay {
-            opacity: 1;
-        }
-
-        /* Full Image Modal */
+        /* Full Image Modal Styles */
         .full-image-modal {
             position: fixed;
             top: 0;
@@ -286,26 +178,44 @@
             opacity: 1;
         }
 
+        /* BUG FIX: The container is now the relative parent for the caption */
         .full-image-container {
-            position: relative;
-            /* MODIFICATION: Use calc() to ensure there is always space for the
-               absolutely positioned controls (arrows and close button) on the viewport. */
-            max-width: calc(100vw - 160px);  /* 160px = space for 50px arrows + 30px padding on each side */
-            max-height: calc(100vh - 100px); /* 100px = space for top close button + buffer */
+            position: relative; /* This is crucial for positioning the caption */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: calc(100vw - 160px);
+            max-height: calc(100vh - 100px);
         }
 
         .full-image {
-            /* These styles are correct: the image will fit within the container above */
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
             border-radius: 8px;
-            display: block; /* Removes extra space below the image */
+            display: block;
+        }
+        
+        /* BUG FIX: Caption is now positioned relative to the container */
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+            color: white;
+            padding: 50px 20px 20px;
+            font-size: 1rem;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none; /* Allows clicking through the caption area to the image */
         }
 
         .full-image-close {
             position: absolute;
-            top: -40px; /* Positioned above the container */
+            top: -40px;
             right: 0;
             background: #DAA520;
             border: none;
@@ -318,6 +228,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 10001; /* Ensure it's above other elements */
         }
 
         .navigation-arrows {
@@ -336,6 +247,7 @@
             align-items: center;
             justify-content: center;
             transition: background 0.3s ease;
+            z-index: 10001;
         }
 
         .navigation-arrows:hover {
@@ -343,11 +255,11 @@
         }
 
         .nav-prev {
-            left: -60px; /* Positioned left of the container */
+            left: -70px; /* Adjusted for better spacing */
         }
 
         .nav-next {
-            right: -60px; /* Positioned right of the container */
+            right: -70px; /* Adjusted for better spacing */
         }
 
         @keyframes fadeIn {
@@ -355,16 +267,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-
-        /* Responsive styles for mobile navigation arrows */
-        /* These styles correctly override the desktop layout for smaller screens */
+        /* Responsive styles */
         @media (max-width: 768px) {
             .full-image-container {
-                /* On mobile, revert to a simpler percentage-based width and remove desktop constraints */
                 max-width: 100%;
                 max-height: 100%;
                 width: 100%;
-                padding: 0 10px; /* Add padding to prevent image from touching screen edges */
+                padding: 0 10px;
                 box-sizing: border-box;
             }
 
@@ -375,11 +284,11 @@
             }
 
             .nav-prev {
-                left: 15px; /* Bring inside from the left */
+                left: 15px;
             }
 
             .nav-next {
-                right: 15px; /* Bring inside from the right */
+                right: 15px;
             }
 
             .full-image-close {
@@ -388,6 +297,11 @@
                 background: rgba(0,0,0,0.5);
                 width: 35px;
                 height: 35px;
+            }
+            
+            .image-caption {
+                font-size: 0.9rem;
+                padding: 30px 10px 10px;
             }
         }
     </style>
@@ -444,7 +358,7 @@
         <div class="text-center filter-buttons">
             <button class="filter-btn active" data-filter="all">All Events</button>
             <button class="filter-btn" data-filter="community">Hall of Fame Banquet</button>
-            <button class="filter-btn" data-filter="awards">Awards & Recognition</button>
+            <button class="filter-btn" data-filter="awards">Community</button>
             <button class="filter-btn" data-filter="fundraising">Manual Memories</button>
         </div>
 
@@ -470,12 +384,12 @@
                 </div>
             </div>
 
-                        <div class="col-lg-4 col-md-6 gallery-item" data-category="community">
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="community">
                 <div class="card gallery-card h-100">
                     <div class="position-relative">
                         <img src="assets/img/Plaque Awarded for Website in Numerical Order/I (a)i Chris Duncan accepting plaque on behalf of Honoree Superintendent Ken Hinton & MASRA Chairperson Hosea Washington.jpg" 
                              class="card-img-top gallery-image" alt="Annual Awards Banquet">
-                        <div class="photo-count">26 Photos</div>
+                        <div class="photo-count">23 Photos</div>
                         <div class="gallery-overlay">
                             <a href="#" class="view-gallery-btn" onclick="openGallery('plaque-2024')">
                                 <i class="fas fa-images me-2"></i>View Gallery
@@ -515,7 +429,7 @@
                     <div class="position-relative">
                         <img src="assets/img/2024 Hall of Fame Banquet/2024 Hall of Fame Program Bulletin.jpg" 
                              class="card-img-top gallery-image" alt="Hall of Fame">
-                        <div class="photo-count">15 Photos</div>
+                        <div class="photo-count">18 Photos</div>
                         <div class="gallery-overlay">
                             <a href="#" class="view-gallery-btn" onclick="openGallery('fundraising-gala-2024')">
                                 <i class="fas fa-images me-2"></i>View Gallery
@@ -536,7 +450,7 @@
                     <div class="position-relative">
                         <img src="assets/img/Manual Memories 1909 - 1963/Memories 1909 thru 1963.jpeg" 
                              class="card-img-top gallery-image" alt="Manual Memories">
-                        <div class="photo-count">10 Photos</div>
+                        <div class="photo-count">9 Photos</div>
                         <div class="gallery-overlay">
                             <a href="#" class="view-gallery-btn" onclick="openGallery('town-hall-2024')">
                                 <i class="fas fa-images me-2"></i>View Gallery
@@ -549,31 +463,12 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
     <!-- Content Wrapper End -->
 
-    <!-- Lightbox Modal -->
-    <div id="lightboxModal" class="lightbox-modal">
-        <div class="lightbox-content">
-            <div class="lightbox-header">
-                <h4 id="lightboxTitle">Gallery Title</h4>
-                <button class="lightbox-close" onclick="closeLightbox()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="lightbox-gallery">
-                <div id="lightboxImageGrid" class="lightbox-image-grid">
-                    <!-- Images will be dynamically loaded here -->
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Full Image Modal -->
+    <!-- BUG FIX: The HTML structure is simplified. The extra wrapper div is removed. -->
     <div id="fullImageModal" class="full-image-modal">
         <div class="full-image-container">
             <button class="full-image-close" onclick="closeFullImage()">
@@ -582,7 +477,10 @@
             <button class="navigation-arrows nav-prev" onclick="navigateImage(-1)">
                 <i class="fas fa-chevron-left"></i>
             </button>
+            
             <img id="fullImage" class="full-image" src="" alt="Full size image">
+            <div id="imageCaption" class="image-caption"></div>
+            
             <button class="navigation-arrows nav-next" onclick="navigateImage(1)">
                 <i class="fas fa-chevron-right"></i>
             </button>
@@ -601,58 +499,239 @@
     <script src="js/main.js"></script>
 
     <script>
-        // Gallery data structure
+        // Gallery data structure with captions
         const galleryData = {
             'awards-banquet-2024': {
                 title: 'Scholarship to Amar Thomas',
                 images: [
-                    'assets/img/Board Members Virgil Marshal & Hosea Washington Award Scholarship to MHS Senior Amar Thomas .jpg'
-                   ]
+                    { 
+                        src: 'assets/img/Board Members Virgil Marshal & Hosea Washington Award Scholarship to MHS Senior Amar Thomas .jpg',
+                        caption: 'Board Members Virgil Marshal & Hosea Washington award a scholarship to MHS Senior Amar Thomas.'
+                    }
+                ]
             },
             'health-fair-2024': {
                 title: 'CARR Reading Buddy',
                 images: [
-                    'assets/img/MASRA Collaborating with CARR Reading Buddy.jpg' ]
+                    { 
+                        src: 'assets/img/MASRA Collaborating with CARR Reading Buddy.jpg',
+                        caption: 'MASRA collaborating with the CARR Reading Buddy program.'
+                    }
+                ]
             },
-            'plaque-2024': {
-                title: 'Hall of Fame',
+                        'plaque-2024': {
+                title: 'Hall of Fame Plaque Awards',
                 images: [
-                    'assets/img/Plaque Awarded for Website in Numerical Order/I (a)i Chris Duncan accepting plaque on behalf of Honoree Superintendent Ken Hinton & MASRA Chairperson Hosea Washington.jpg',
-                    'assets/img/Plaque Awarded for Website in Numerical Order/I (b)i Dale & Donald Jackson accepting award on behalf of their Father & Mother Attorney Don & Ernestine Jackson & MASRA Chairperson Hosea Washington.jpg'
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/I (a)i Chris Duncan accepting plaque on behalf of Honoree Superintendent Ken Hinton & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Chris Duncan accepting a plaque on behalf of Honoree Superintendent Ken Hinton, alongside MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/I (b)i Dale & Donald Jackson accepting award on behalf of their Father & Mother Attorney Don & Ernestine Jackson & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Dale & Donald Jackson accepting an award for their parents, Attorney Don & Ernestine Jackson, from MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/I (c)i Dale & Donald Jackson accepting award on behalf of their Mother Ernestine Jackson & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Dale & Donald Jackson accepting an award on behalf of their mother, Ernestine Jackson, from MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/I (e)i Honoree Audrey Gipson & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Honoree Audrey Gipson with MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/I (f)i Honoree Dr. Valeria Pierce & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Honoree Dr. Valeria Pierce with MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/I (g)i Honoree Sharon Crews & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Honoree Sharon Crews with MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/II(a)i Deshe & Sergio McClain & Coach McClain’s Grandchildren accepting award on behalf of Honoree Coach Wayne McClain & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Desha & Sergio McClain & Coach McClain\'s Grandchildren accepting an award on behalf of Honoree Coach Wayne McClain, with MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/III(a)i Honoree Sergio McClain & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Honoree Sergio McClain with MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/III(b)i Honoree Marcus Griffin & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Honoree Marcus Griffin with MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/IV (a)i Darren Winkler accepting award on the behalf of his father Honoree Coach Dennis Winkler & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Darren Winkler accepting an award on behalf of his father, Honoree Coach Dennis Winkler, with MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/IX (a)i Honoree Clorissa Yates-Nickels & Chairperson Hosea Washington.jpg',
+                        caption: 'Honoree Clorissa Yates-Nickels with Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/IX (b)i Honoree Latoya Howard & Chairperson Hosea Washington.jpg',
+                        caption: 'Honoree Latoya Howard with Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/V (a)i Honoree Jimmy Lacy & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Honoree Jimmy Lacy with MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/V (b)i Honoree Coach Jarrod Macklin & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Honoree Coach Jarrod Macklin with MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/V (c)i Coach Jarrod Macklin accepting award on the behalf of his brother honoree Edward Macklin & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Coach Jarrod Macklin accepting an award on behalf of his brother, honoree Edward Macklin, with MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/V (d)i Honoree Chris Johnson & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Honoree Chris Johnson with MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/VI (a)i Honoree Gene Petty with Family.jpg',
+                        caption: 'Honoree Gene Petty with his family.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/VI (b)i Devear Lewis accepting award on behalf of Honoree Al Smith & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Devar Lewis accepting an award on behalf of Honoree Al Smith, with MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/VII (a)i Bill Willingham accepting award on behalf of honoree Donald Willingham & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Bill Willingham accepting an award on behalf of honoree Donald Willingham, with MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/VII (b)i Honoree Earl Gant & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Honoree Earl Gant with MASRA Chairperson Hosea Washington.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/VIII (a)i Honoree Larry Hendricks & MASRA Chairperson Hosea Washington.jpg',
+                        caption: 'Honoree Larry Hendricks with MASRA Chairperson Hosea Washington.'
+                    }
                 ]
             },
             'fundraising-gala-2024': {
-                title: 'Hall of Fame',
+                title: 'Hall of Fame Banquet 2024',
                 images: [
-                    'assets/img/2024 Hall of Fame Banquet/2. Dale & Donald Jackson accepting award on behalf of Don & Ernestine Jackson.jpg',
-                    'assets/img/2024 Hall of Fame Banquet/2024 Hall of Fame Program Bulletin.jpg',
-                    'assets/img/2024 Hall of Fame Banquet/Band 1 - MuziqueBaux.jpg',
-                    'assets/img/2024 Hall of Fame Banquet/Hall of Fame Banquet Decorations.jpg',
-                    'assets/img/2024 Hall of Fame Banquet/HOF Speaker Jameere Jackson & Board Members Fred Lee & Tod Daniels.jpg',
-                    'assets/img/2024 Hall of Fame Banquet/Honoree Chris Johnson.jpg',
-                    'assets/img/2024 Hall of Fame Banquet/Honoree Ms. Audrey Gipson.jpg',
-                    'assets/img/2024 Hall of Fame Banquet/Honorees Jarrod Macklin & Chris Johnson.jpg',
-                    'assets/img/2024 Hall of Fame Banquet/Honorees Jarrod Macklin, Sergio McClain, Marcus Griffin, Jimmy Lacy.jpg',
-                    'assets/img/2024 Hall of Fame Banquet/Honorees Jarrod Macklin, Sergio McClain, Marcus Griffin.jpg',
-                    'assets/img/2024 Hall of Fame Banquet/Honorees Jimmy Lacy & Jarrod Macklin.jpg',
-                    'assets/img/2024 Hall of Fame Banquet/Jameere Jackson Sister and Dad - Need Some Help.jpg',
-                    'assets/img/2024 Hall of Fame Banquet/Jemeere Jackson Sister.jpg',
-                    'assets/img/2024 Hall of Fame Banquet/MHOF-Sceen Shot of Dr Valeria  Pierce.jpg',
-                    'assets/img/2024 Hall of Fame Banquet/MHOF-Tena Nichelson & Brady Sain.jpg'
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/2024 Hall of Fame Program Bulletin.jpg',
+                        caption: 'The official program for the 2024 Hall of Fame Banquet.'
+                    },
+                                                            {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/XX. (i) 1st Annual MHS Hall of Fame Banquet Mayor Dr. Rita Ali.jpg',
+                        caption: 'Mayor Dr. Rita Ali at the 1st Annual MHS Hall of Fame Banquet.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/XX. (ii) 1st  Annual MHS Hall of Fame Banquet Speaker Jamere Jackson.jpg',
+                        caption: 'Speaker Jemeere Jackson at the 1st Annual MHS Hall of Fame Banquet.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/XX. (iii) 1st Annual MHS Hall of Fame Banquet MC Dr. Dominic Washington.jpg',
+                        caption: 'MC Dr. Dominic Washington at the 1st Annual MHS Hall of Fame Banquet.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/XX. (IV) 1st Annual MHS Hall of Fame Banquet Entertainment - MuziqueBaux Band.jpg',
+                        caption: 'Entertainment by MuztiqueBaux Band at the 1st Annual MHS Hall of Fame Banquet.'
+                    },
+                    {
+                        src: 'assets/img/Plaque Awarded for Website in Numerical Order/XX. (v) 1st Annual MHS Hall of Fame Board Members Mrs. Brenda Grove & Mrs. Sha_ron Ford.jpg',
+                        caption: 'Board Members Mrs. Brenda Grove & Mrs. Sharon Ford at the 1st Annual MHS Hall of Fame.'
+                    },
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/2. Dale & Donald Jackson accepting award on behalf of Don & Ernestine Jackson.jpg',
+                        caption: 'Dale & Donald Jackson accepting the award for their parents, Don & Ernestine Jackson.'
+                    },
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/Band 1 - MuziqueBaux.jpg',
+                        caption: 'The band, MuziqueBaux, performing at the event.'
+                    },
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/Hall of Fame Banquet Decorations.jpg',
+                        caption: 'Decorations at the Hall of Fame Banquet.'
+                    },
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/HOF Speaker Jameere Jackson & Board Members Fred Lee & Tod Daniels.jpg',
+                        caption: 'Hall of Fame speaker Jameere Jackson with Board Members Fred Lee & Tod Daniels.'
+                    },
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/Honoree Chris Johnson.jpg',
+                        caption: 'Honoree Chris Johnson.'
+                    },
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/Honoree Ms. Audrey Gipson.jpg',
+                        caption: 'Honoree Ms. Audrey Gipson.'
+                    },
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/Honorees Jarrod Macklin & Chris Johnson.jpg',
+                        caption: 'Honorees Jarrod Macklin and Chris Johnson.'
+                    },
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/Honorees Jarrod Macklin, Sergio McClain, Marcus Griffin, Jimmy Lacy.jpg',
+                        caption: 'Honorees Jarrod Macklin, Sergio McClain, Marcus Griffin, and Jimmy Lacy.'
+                    },
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/Honorees Jarrod Macklin, Sergio McClain, Marcus Griffin.jpg',
+                        caption: 'Honorees Jarrod Macklin, Sergio McClain, and Marcus Griffin.'
+                    },
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/Honorees Jimmy Lacy & Jarrod Macklin.jpg',
+                        caption: 'Honorees Jimmy Lacy and Jarrod Macklin.'
+                    },
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/Jameere Jackson Sister and Dad - Need Some Help.jpg',
+                        caption: 'Jameere Jackson with his sister and father.'
+                    },
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/Jemeere Jackson Sister.jpg',
+                        caption: 'The sister of Jameere Jackson.'
+                    },
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/MHOF-Sceen Shot of Dr Valeria  Pierce.jpg',
+                        caption: 'A screen shot of Dr. Valeria Pierce during the event.'
+                    },
+                    {
+                        src: 'assets/img/2024 Hall of Fame Banquet/MHOF-Tena Nichelson & Brady Sain.jpg',
+                        caption: 'Tena Nichelson and Brady Sain at the Hall of Fame event.'
+                    }
                 ]
             },
             'town-hall-2024': {
-                title: 'Manual Memories',
+                title: 'Manual Memories 1909 - 1963',
                 images: [
-                    'assets/img/Manual Memories 1909 - 1963/Band Picture.jpeg',
-                    'assets/img/Manual Memories 1909 - 1963/Cafeteria Announcement.jpeg',
-                    'assets/img/Manual Memories 1909 - 1963/Cafeteria.jpeg',
-                    'assets/img/Manual Memories 1909 - 1963/Chemistry Lab.jpeg',
-                    'assets/img/Manual Memories 1909 - 1963/Library.jpeg',
-                     'assets/img/Manual Memories 1909 - 1963/School Bldg Entrance.jpeg',
-                     'assets/img/Manual Memories 1909 - 1963/School Bldg Picture 1.jpeg',
-                    'assets/img/Manual Memories 1909 - 1963/Senior English Rm 315.jpeg',
-                     'assets/img/Manual Memories 1909 - 1963/Study Hall 203.jpeg'
+                    {
+                        src: 'assets/img/Manual Memories 1909 - 1963/Band Picture.jpeg',
+                        caption: 'A historic photo of the school band.'
+                    },
+                    {
+                        src: 'assets/img/Manual Memories 1909 - 1963/Cafeteria Announcement.jpeg',
+                        caption: 'An old cafeteria announcement board.'
+                    },
+                    {
+                        src: 'assets/img/Manual Memories 1909 - 1963/Cafeteria.jpeg',
+                        caption: 'The school cafeteria as it was.'
+                    },
+                    {
+                        src: 'assets/img/Manual Memories 1909 - 1963/Chemistry Lab.jpeg',
+                        caption: 'Students in the chemistry lab.'
+                    },
+                    {
+                        src: 'assets/img/Manual Memories 1909 - 1963/Library.jpeg',
+                        caption: 'A view of the school library.'
+                    },
+                     {
+                        src: 'assets/img/Manual Memories 1909 - 1963/School Bldg Entrance.jpeg',
+                        caption: 'The main entrance to the school building.'
+                    },
+                     {
+                        src: 'assets/img/Manual Memories 1909 - 1963/School Bldg Picture 1.jpeg',
+                        caption: 'An external view of the school building.'
+                    },
+                    {
+                        src: 'assets/img/Manual Memories 1909 - 1963/Senior English Rm 315.jpeg',
+                        caption: 'The Senior English classroom, Room 315.'
+                    },
+                     {
+                        src: 'assets/img/Manual Memories 1909 - 1963/Study Hall 203.jpeg',
+                        caption: 'Students in Study Hall, Room 203.'
+                    }
                 ]
             }
         };
@@ -678,27 +757,25 @@
             });
         });
 
-        // --- MODIFIED FUNCTION ---
-        // Open the full image viewer directly instead of the thumbnail grid
+        // Open the full image viewer
         function openGallery(galleryId) {
-            event.preventDefault(); // Prevent the <a> tag from jumping to the top of the page
+            event.preventDefault();
             currentGalleryId = galleryId;
             const gallery = galleryData[galleryId];
             if (!gallery || gallery.images.length === 0) return;
 
             currentImages = gallery.images;
-            openFullImage(0); // Open the full image viewer starting with the first image
+            openFullImage(0);
         }
 
-        // Close Lightbox (This function is no longer used but kept for completeness)
-        function closeLightbox() {
-            document.getElementById('lightboxModal').classList.remove('show');
-        }
-
-        // Open Full Image Modal
+        // Open Full Image Modal and set the caption
         function openFullImage(index) {
             currentImageIndex = index;
-            document.getElementById('fullImage').src = currentImages[currentImageIndex];
+            const imageData = currentImages[currentImageIndex];
+            
+            document.getElementById('fullImage').src = imageData.src;
+            document.getElementById('imageCaption').textContent = imageData.caption || '';
+            
             document.getElementById('fullImageModal').classList.add('show');
         }
 
@@ -707,7 +784,7 @@
             document.getElementById('fullImageModal').classList.remove('show');
         }
 
-        // Navigate Full Images
+        // Navigate Full Images and update the caption
         function navigateImage(direction) {
             currentImageIndex += direction;
             if (currentImageIndex < 0) {
@@ -715,12 +792,16 @@
             } else if (currentImageIndex >= currentImages.length) {
                 currentImageIndex = 0;
             }
-            document.getElementById('fullImage').src = currentImages[currentImageIndex];
+            
+            const imageData = currentImages[currentImageIndex];
+            document.getElementById('fullImage').src = imageData.src;
+            document.getElementById('imageCaption').textContent = imageData.caption || '';
         }
 
-        // Keyboard navigation for full image modal
+        // Keyboard navigation for the modal
         document.addEventListener('keydown', function(e) {
-            if (document.getElementById('fullImageModal').classList.contains('show')) {
+            const fullImageModal = document.getElementById('fullImageModal');
+            if (fullImageModal.classList.contains('show')) {
                 if (e.key === 'ArrowLeft') {
                     navigateImage(-1);
                 } else if (e.key === 'ArrowRight') {
@@ -728,12 +809,23 @@
                 } else if (e.key === 'Escape') {
                     closeFullImage();
                 }
-            } else if (document.getElementById('lightboxModal').classList.contains('show')) {
-                if (e.key === 'Escape') {
-                    closeLightbox();
-                }
             }
         });
+
+        // Spinner fade out
+        (function ($) {
+            "use strict";
+
+            // Spinner
+            var spinner = function () {
+                setTimeout(function () {
+                    if ($('#spinner').length > 0) {
+                        $('#spinner').removeClass('show');
+                    }
+                }, 1);
+            };
+            spinner();
+        })(jQuery);
     </script>
-    </body>
-    </html>
+</body>
+</html>
