@@ -171,6 +171,7 @@
             justify-content: center;
             opacity: 0;
             transition: opacity 0.3s ease;
+            flex-direction: column; /* Allow vertical stacking */
         }
 
         .full-image-modal.show {
@@ -178,14 +179,15 @@
             opacity: 1;
         }
 
-        /* BUG FIX: The container is now the relative parent for the caption */
         .full-image-container {
-            position: relative; /* This is crucial for positioning the caption */
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 100%;
             max-width: calc(100vw - 160px);
-            max-height: calc(100vh - 100px);
+            /* Adjust max-height to make space for thumbnails */
+            max-height: calc(100vh - 200px); 
         }
 
         .full-image {
@@ -196,7 +198,6 @@
             display: block;
         }
         
-        /* BUG FIX: Caption is now positioned relative to the container */
         .image-caption {
             position: absolute;
             bottom: 0;
@@ -210,13 +211,13 @@
             border-bottom-left-radius: 8px;
             border-bottom-right-radius: 8px;
             transition: opacity 0.3s ease-in-out;
-            pointer-events: none; /* Allows clicking through the caption area to the image */
+            pointer-events: none;
         }
 
         .full-image-close {
             position: absolute;
-            top: -40px;
-            right: 0;
+            top: 20px;
+            right: 20px;
             background: #DAA520;
             border: none;
             color: white;
@@ -228,7 +229,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10001; /* Ensure it's above other elements */
+            z-index: 10002; /* Ensure it's above other elements */
         }
 
         .navigation-arrows {
@@ -255,12 +256,49 @@
         }
 
         .nav-prev {
-            left: -70px; /* Adjusted for better spacing */
+            left: -70px;
         }
 
         .nav-next {
-            right: -70px; /* Adjusted for better spacing */
+            right: -70px;
         }
+
+        /* NEW: Thumbnail Progress Bar Styles */
+        .thumbnail-progress {
+            width: 100%;
+            max-width: 80vw;
+            text-align: center;
+            margin-top: 20px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            padding-bottom: 10px; /* For scrollbar */
+        }
+
+        .thumbnail-image {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            border: 3px solid transparent;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            display: inline-block; /* To respect white-space */
+        }
+
+        .thumbnail-image:hover {
+            opacity: 1;
+        }
+
+        .thumbnail-image.active {
+            border-color: #DAA520;
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        /* End of New Styles */
+
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -271,7 +309,7 @@
         @media (max-width: 768px) {
             .full-image-container {
                 max-width: 100%;
-                max-height: 100%;
+                max-height: calc(100vh - 180px); /* Adjust for mobile */
                 width: 100%;
                 padding: 0 10px;
                 box-sizing: border-box;
@@ -281,6 +319,7 @@
                 width: 40px;
                 height: 40px;
                 font-size: 16px;
+                top: 45%; /* Adjust vertical position */
             }
 
             .nav-prev {
@@ -302,6 +341,10 @@
             .image-caption {
                 font-size: 0.9rem;
                 padding: 30px 10px 10px;
+            }
+
+            .thumbnail-progress {
+                max-width: 95vw;
             }
         }
     </style>
@@ -372,7 +415,7 @@
                              class="card-img-top gallery-image" alt="Annual Awards Banquet">
                         <div class="photo-count">1 Photo</div>
                         <div class="gallery-overlay">
-                            <a href="#" class="view-gallery-btn" onclick="openGallery('awards-banquet-2024')">
+                            <a href="#" class="view-gallery-btn" onclick="openGallery(event, 'awards-banquet-2024')">
                                 <i class="fas fa-images me-2"></i>View Gallery
                             </a>
                         </div>
@@ -391,7 +434,7 @@
                              class="card-img-top gallery-image" alt="Annual Awards Banquet">
                         <div class="photo-count">23 Photos</div>
                         <div class="gallery-overlay">
-                            <a href="#" class="view-gallery-btn" onclick="openGallery('plaque-2024')">
+                            <a href="#" class="view-gallery-btn" onclick="openGallery(event, 'plaque-2024')">
                                 <i class="fas fa-images me-2"></i>View Gallery
                             </a>
                         </div>
@@ -411,7 +454,7 @@
                              class="card-img-top gallery-image" alt="MHS">
                         <div class="photo-count">1 Photo</div>
                         <div class="gallery-overlay">
-                            <a href="#" class="view-gallery-btn" onclick="openGallery('health-fair-2024')">
+                            <a href="#" class="view-gallery-btn" onclick="openGallery(event, 'health-fair-2024')">
                                 <i class="fas fa-images me-2"></i>View Gallery
                             </a>
                         </div>
@@ -431,7 +474,7 @@
                              class="card-img-top gallery-image" alt="Hall of Fame">
                         <div class="photo-count">18 Photos</div>
                         <div class="gallery-overlay">
-                            <a href="#" class="view-gallery-btn" onclick="openGallery('fundraising-gala-2024')">
+                            <a href="#" class="view-gallery-btn" onclick="openGallery(event, 'fundraising-gala-2024')">
                                 <i class="fas fa-images me-2"></i>View Gallery
                             </a>
                         </div>
@@ -452,7 +495,7 @@
                              class="card-img-top gallery-image" alt="Manual Memories">
                         <div class="photo-count">9 Photos</div>
                         <div class="gallery-overlay">
-                            <a href="#" class="view-gallery-btn" onclick="openGallery('town-hall-2024')">
+                            <a href="#" class="view-gallery-btn" onclick="openGallery(event, 'town-hall-2024')">
                                 <i class="fas fa-images me-2"></i>View Gallery
                             </a>
                         </div>
@@ -468,12 +511,11 @@
     <!-- Content Wrapper End -->
 
     <!-- Full Image Modal -->
-    <!-- BUG FIX: The HTML structure is simplified. The extra wrapper div is removed. -->
     <div id="fullImageModal" class="full-image-modal">
+        <button class="full-image-close" onclick="closeFullImage()">
+            <i class="fas fa-times"></i>
+        </button>
         <div class="full-image-container">
-            <button class="full-image-close" onclick="closeFullImage()">
-                <i class="fas fa-times"></i>
-            </button>
             <button class="navigation-arrows nav-prev" onclick="navigateImage(-1)">
                 <i class="fas fa-chevron-left"></i>
             </button>
@@ -485,6 +527,8 @@
                 <i class="fas fa-chevron-right"></i>
             </button>
         </div>
+        <!-- NEW: Thumbnail Progress Bar Container -->
+        <div id="thumbnailProgress" class="thumbnail-progress"></div>
     </div>
 
     <!-- JavaScript Libraries -->
@@ -519,7 +563,7 @@
                     }
                 ]
             },
-                        'plaque-2024': {
+            'plaque-2024': {
                 title: 'Hall of Fame Plaque Awards',
                 images: [
                     {
@@ -615,7 +659,7 @@
                         src: 'assets/img/2024 Hall of Fame Banquet/2024 Hall of Fame Program Bulletin.jpg',
                         caption: 'The official program for the 2024 Hall of Fame Banquet.'
                     },
-                                                            {
+                    {
                         src: 'assets/img/Plaque Awarded for Website in Numerical Order/XX. (i) 1st Annual MHS Hall of Fame Banquet Mayor Dr. Rita Ali.jpg',
                         caption: 'Mayor Dr. Rita Ali at the 1st Annual MHS Hall of Fame Banquet.'
                     },
@@ -736,7 +780,6 @@
             }
         };
 
-        let currentGalleryId = null;
         let currentImages = [];
         let currentImageIndex = 0;
 
@@ -757,26 +800,50 @@
             });
         });
 
-        // Open the full image viewer
-        function openGallery(galleryId) {
+        // Open the gallery, create thumbnails, and show the first image
+        function openGallery(event, galleryId) {
             event.preventDefault();
-            currentGalleryId = galleryId;
             const gallery = galleryData[galleryId];
             if (!gallery || gallery.images.length === 0) return;
 
             currentImages = gallery.images;
-            openFullImage(0);
+            
+            const thumbnailContainer = document.getElementById('thumbnailProgress');
+            thumbnailContainer.innerHTML = ''; // Clear previous thumbnails
+
+            // Create and append all thumbnails for the current gallery
+            currentImages.forEach((image, index) => {
+                const thumb = document.createElement('img');
+                thumb.src = image.src;
+                thumb.classList.add('thumbnail-image');
+                thumb.dataset.index = index;
+                thumb.onclick = () => showImage(index);
+                thumbnailContainer.appendChild(thumb);
+            });
+
+            showImage(0); // Show the first image
+            document.getElementById('fullImageModal').classList.add('show');
         }
 
-        // Open Full Image Modal and set the caption
-        function openFullImage(index) {
+        // Show a specific image and update the active thumbnail
+        function showImage(index) {
             currentImageIndex = index;
             const imageData = currentImages[currentImageIndex];
             
             document.getElementById('fullImage').src = imageData.src;
             document.getElementById('imageCaption').textContent = imageData.caption || '';
             
-            document.getElementById('fullImageModal').classList.add('show');
+            // Update active state on thumbnails
+            const thumbnails = document.querySelectorAll('.thumbnail-image');
+            thumbnails.forEach((thumb, i) => {
+                if (i === index) {
+                    thumb.classList.add('active');
+                    // Ensure the active thumbnail is visible in the scrollable container
+                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
         }
 
         // Close Full Image Modal
@@ -784,18 +851,15 @@
             document.getElementById('fullImageModal').classList.remove('show');
         }
 
-        // Navigate Full Images and update the caption
+        // Navigate to the next or previous image
         function navigateImage(direction) {
-            currentImageIndex += direction;
-            if (currentImageIndex < 0) {
-                currentImageIndex = currentImages.length - 1;
-            } else if (currentImageIndex >= currentImages.length) {
-                currentImageIndex = 0;
+            let newIndex = currentImageIndex + direction;
+            if (newIndex < 0) {
+                newIndex = currentImages.length - 1;
+            } else if (newIndex >= currentImages.length) {
+                newIndex = 0;
             }
-            
-            const imageData = currentImages[currentImageIndex];
-            document.getElementById('fullImage').src = imageData.src;
-            document.getElementById('imageCaption').textContent = imageData.caption || '';
+            showImage(newIndex);
         }
 
         // Keyboard navigation for the modal
