@@ -96,6 +96,16 @@
 </head>
 
 <body>
+<script src="https://www.paypal.com/sdk/js?client-id=BAAuhbeCOF8KGjWST0958V71Okqey8TZiS-NcGyvKBUvUcoECYdZ1BFSviGvUWQwXustST9PHiSzDIc_dM&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (document.getElementById("paypal-container-hof")) {
+            paypal.HostedButtons({
+                hostedButtonId: "LFPSWYQ8LGGVC",
+            }).render("#paypal-container-hof");
+        }
+    });
+</script>
     <!-- Spinner Start -->
     <div id="spinner" class="bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -129,25 +139,97 @@
             </div>
         </div>
     </nav>
-    
-    <div class="container my-5">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-             <h1 class="mb-5" style="font-family: 'Heebo', sans-serif; color: #DAA520;">HALL OF FAME INDUCTEES</h1>
-        </div>
-        <!-- Nomination Section - Prominently placed at the top -->
-<div class="nomination-section wow fadeInUp" data-wow-delay="0.15s">
-    <div class="text-center mb-4">
-        <h2 style="color: #DAA520; font-family: 'Heebo', sans-serif;">
-            <i class="fas fa-star me-2"></i>Please Submit Manual High School Hall of Fame Nomination Form for Athletic Hall of Fame & Distinguished Alumn
-        </h2>
-        <p class="lead mb-4">Our next Hall of Fame Banquet is scheduled Saturday, June 6, 2026. Details will be forthcoming in the near future.</p>
-        
-<button class="btn form-toggle-btn" type="button" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScNERpWOom4K9jHYHA9DCx-V9OfvCbGxx_avc1Ipkrcy7gxFA/viewform', '_blank')">
-    <i class="fas fa-external-link-alt me-2"></i>Submit a Nomination
-</button>
+
+<div class="container my-5">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h1 class="mb-5" style="font-family: 'Heebo', sans-serif; color: #DAA520;">HALL OF FAME TICKETS</h1>
     </div>
 
+    <div>
+        <div class="row">
+
+            <!-- Left column: ticket info -->
+            <div class="col-lg-9 mb-4 mb-lg-0">
+                <p class="mainContent">
+                        The Manual Alumni Student Recognition Association (MASRA) is proud to announce the induction of outstanding individuals into the Manual High School Distinguished Alumni and Athletic Alumni Hall of Fame. 
+                        The induction ceremony will take place on Saturday, June 6, 2026, at 5:30 pm at the Peoria Manual High School Main Gymnasium.
+               
+                </p>
+            </div>
+
+            <!-- Right column: payment tabs -->
+            <div class="col-lg-3">
+                <ul class="nav nav-tabs" id="ticketTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active text-decoration-underline text-success"
+                           id="hof-tab1-tab" data-bs-toggle="tab" href="#hof-tab1"
+                           role="tab" aria-controls="hof-tab1" aria-selected="true">
+                           PayPal / Card
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-decoration-underline text-success"
+                           id="hof-tab2-tab" data-bs-toggle="tab" href="#hof-tab2"
+                           role="tab" aria-controls="hof-tab2" aria-selected="false">
+                           Cash App
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-decoration-underline text-success"
+                           id="hof-tab3-tab" data-bs-toggle="tab" href="#hof-tab3"
+                           role="tab" aria-controls="hof-tab3" aria-selected="false">
+                           Zelle
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content pt-3" id="ticketTabsContent">
+
+                    <!-- PayPal Tab -->
+                    <div class="tab-pane fade show active" id="hof-tab1"
+                         role="tabpanel" aria-labelledby="hof-tab1-tab">
+                        <div id="paypal-container-hof"></div>
+                        <script>
+                            paypal.HostedButtons({
+                                hostedButtonId: "LFPSWYQ8LGGVC",
+                            }).render("#paypal-container-hof");
+                        </script>
+                    </div>
+
+                    <!-- Cash App Tab -->
+                    <div class="tab-pane fade" id="hof-tab2"
+                         role="tabpanel" aria-labelledby="hof-tab2-tab">
+                        <p>Price of Ticket is 40 dollars</p>
+                        <p>Scan the QR Code</p>
+                        <img src="assets/img/cash.png" alt="Cash App QR Code"
+                             style="max-width: 250px; height: auto;" class="img-fluid">
+                        <p>or Send 40 Dollars to <a href="https://cash.app/$MHSASRA" target="_blank" class="text-primary">$MHSASRA</a></p>
+
+                    </div>
+
+                    <!-- Zelle Tab -->
+                <div class="tab-pane fade" id="hof-tab3"
+                    role="tabpanel" aria-labelledby="hof-tab3-tab">
+  <div class="donation-info">
+    <div class="phone-number">
+      <label>Phone:</label>
+      <input type="text" value="(309) 397-5875" readonly onclick="this.select()" 
+             style="border: 1px solid #ccc; padding: 5px; background: #f9f9f9;">
+    </div>
+    <p><small>Price of Ticket is 40 dollars , Click the number field to select and copy</small></p>
+  </div>
+                </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
+
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+             <h3 class="mb-5" style="font-family: 'Heebo', sans-serif; color: #DAA520;">HALL OF FAME INDUCTEES</h3>
+        </div>
 
         <!-- Tab Navigation -->
         <ul class="nav nav-pills nav-fill flex-wrap mb-4 wow fadeInUp" data-wow-delay="0.2s" id="hofTabs" role="tablist">
